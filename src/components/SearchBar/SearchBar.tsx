@@ -7,9 +7,9 @@ interface SearchBarProps {
 
 const SearchBar = ({ onSubmit }: SearchBarProps) => {
   const handleSubmit = (formData: FormData) => {
-    const query = (formData.get("query") as string)?.trim();
+    const query = formData.get("query") as string;
 
-    if (!query) {
+    if (query === "") {
       toast.error("Please enter your search query.");
       return;
     }
@@ -28,7 +28,7 @@ const SearchBar = ({ onSubmit }: SearchBarProps) => {
         >
           Powered by TMDB
         </a>
-        <form className={styles.form} action={handleSubmit}>
+        <form className={styles.form} action={handleSubmit as unknown as string}>
           <input
             className={styles.input}
             type="text"
